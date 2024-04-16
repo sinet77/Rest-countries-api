@@ -37,7 +37,6 @@ async function fetchOneCountryData(countryName) {
 
 
 
-let regions = [];
 
 // searchButton.addEventListener('click', async () => { 
 
@@ -62,7 +61,8 @@ switchButton.addEventListener('click', function () {
     headline.classList.toggle('clicked1')
     filterSelector.classList.toggle('clicked1')
     countryInput.classList.toggle('clicked1')
-    countryBox.classList.toggle('clicked1')
+    countryInput.classList.toggle('loupe-white')
+    // countryBox.classList.toggle('clicked1')
 
 })
 
@@ -123,12 +123,13 @@ filterSelector.addEventListener('change', async function (event) {
     console.log('Wybrana opcja:', selectedOption);
 
     const countriesData = await fetchCountriesData()
-    for (let i = 0; i < countriesData.length; i++) {
-        regions.push(countriesData[i].region);
-    }
-    regions = countriesData.map(country => country.region);
 
-    console.log(regions);
+
+    const countriesInRegion = countriesData.filter(country => country.region === selectedOption);
+    main.innerHTML = ''
+    countriesInRegion.forEach(createCountries);
+
+    console.log(countriesInRegion);
 
 });
 
