@@ -11,6 +11,7 @@ const switchButton = document.querySelector('.switch')
 const headline = document.querySelector('.headline')
 
 
+
 async function fetchCountriesData() {
     const response = await fetch(("data.json"));
     const data = await response.json();
@@ -34,20 +35,26 @@ async function fetchOneCountryData(countryName) {
 
 
 }
+async function startCountries() {
+    const data = await fetchCountriesData();
+    for (let i = 0; i < data.length; i++) {
+        createCountries(data[i])
+    }
+}
 
+startCountries()
 
-
-
-// searchButton.addEventListener('click', async () => { 
-
-
-
-// })
+countryInput.addEventListener('input', function (event) {
+    const value = this.value.trim(); // Usunięcie białych znaków z początku i końca
+    if (value.length > 0) {
+        this.value = value.charAt(0).toUpperCase() + value.slice(1); // Zamiana tylko pierwszej litery na wielką
+    }
+});
 
 countryInput.addEventListener('keydown', async function (event) {
 
     if (event.key === 'Enter') {
-
+        main.innerHTML = ''
         const data = await fetchOneCountryData(countryInput.value);
         createCountries(data)
 
