@@ -44,7 +44,7 @@ async function startCountries() {
 
 startCountries()
 
-countryInput.addEventListener('input', function (event) {
+countryInput.addEventListener('input', function () {
     const value = this.value.trim(); // Usunięcie białych znaków z początku i końca
     if (value.length > 0) {
         this.value = value.charAt(0).toUpperCase() + value.slice(1); // Zamiana tylko pierwszej litery na wielką
