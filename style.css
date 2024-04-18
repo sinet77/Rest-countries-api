@@ -109,6 +109,7 @@
 .country-name {
     font-weight: bold;
     font-size: 22px;
+    margin-bottom: 15px;
 
 }
 
@@ -124,8 +125,53 @@
     background-color: transparent;
 }
 
+.back-button {
+    display: flex;
+    padding: 12px 25px;
+    width: 110px;
+    word-spacing: 10px;
+    font-weight: bold;
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 5px;
+    color: hsl(200, 15%, 8%);
+    cursor: pointer;
+}
+
+.country-click {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 50px;
+
+}
+
+.click-main {
+
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+
+}
+
+.first-column {
+    flex: 50%;
+}
+
+.second-column {
+    flex: 25%;
+    line-height: 25px;
+}
+
+.third-column {
+    flex: 25%;
+    line-height: 25px;
+
+}
+
 .clicked {
-    background-color: hsl(207, 26%, 17%)
+    background-color: hsl(207, 26%, 17%);
+    color: white;
 }
 
 .clicked1 {

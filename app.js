@@ -9,7 +9,10 @@ const region = document.querySelector('.region')
 const capital = document.querySelector('.capital')
 const switchButton = document.querySelector('.switch')
 const headline = document.querySelector('.headline')
-
+const backButton = document.querySelector('.back-button')
+const countryClick = document.querySelector('.country-click')
+const clickMain = document.querySelector('.click-main')
+const clickFlag = document.querySelector('.flag')
 
 
 async function fetchCountriesData() {
@@ -69,8 +72,17 @@ switchButton.addEventListener('click', function () {
     filterSelector.classList.toggle('clicked1')
     countryInput.classList.toggle('clicked1')
     countryInput.classList.toggle('loupe-white')
+    backButton.classList.toggle('clicked1')
+    switchButton.classList.toggle('clicked1')
+    clickMain.classList.toggle('clicked')
     // countryBox.classList.toggle('clicked1')
 
+})
+
+backButton.addEventListener('click', function () {
+    app.classList.remove('hidden')
+    countryClick.classList.add('hidden')
+    main.classList.remove('hidden')
 })
 
 function createCountries(country) {
@@ -98,6 +110,7 @@ function createCountries(country) {
     countryName.textContent = country.name;
     description.appendChild(countryName)
 
+
     const together = document.createElement('div')
     together.classList.add('together')
     description.appendChild(together)
@@ -116,6 +129,34 @@ function createCountries(country) {
     capital.classList.add('capital')
     capital.textContent = `Capital: ${currentCapital}`;
     together.appendChild(capital)
+
+    countryBox.addEventListener('click', async function () {
+        const data = await fetchOneCountryData(country.name);
+        clickOnTheCountry(data)
+
+    })
+
+
+}
+
+function clickOnTheCountry(country) {
+    main.classList.add('hidden')
+    countryClick.classList.remove('hidden')
+    const nativeName = country.nativeName;
+    const currentNativeName = document.querySelector('.native-name')
+    currentNativeName.textContent = `Native Name: ${nativeName}`
+    // const currentPopulation = country.population;
+    // const currentRegion = country.region;
+    // const currentSubRegion = country.subregion
+    // const currentCapital = country.capital;
+    // const topLevelDomain = country.topLevelDomain;
+    // const currency = country.currencies;
+    // const languages = country.languages;
+    // const borders = country.borders;
+
+
+    countryName.textContent = country.name;
+    clickFlag.src = country.flags.png;
 
 
 
@@ -140,8 +181,3 @@ filterSelector.addEventListener('change', async function (event) {
 
 });
 
-
-
-// async function filterCountries(){
-//     const
-// }
