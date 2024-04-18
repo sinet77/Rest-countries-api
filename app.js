@@ -23,13 +23,14 @@ async function fetchCountriesData() {
     return data;
 }
 
-fetchCountriesData()
-
 async function fetchOneCountryData(countryName) {
-    const response = await fetch(("data.json"));
-    const data = await response.json();
+    // const response = await fetch(("data.json"));
+    // const data = await response.json();
 
-    const country = data.find(country => country.name === countryName);
+    const data = await fetchCountriesData()
+
+    // Poland -> pOLAND ---> poland === poland
+    const country = data.find(country => country.name.toLowerCase() === countryName.toLowerCase());
     if (country) {
         return country;
     } else {
@@ -40,19 +41,22 @@ async function fetchOneCountryData(countryName) {
 }
 async function startCountries() {
     const data = await fetchCountriesData();
-    for (let i = 0; i < data.length; i++) {
-        createCountries(data[i])
-    }
+    data.forEach(d => {
+        createCountries(d)
+    })
+    // for (let i = 0; i < data.length; i++) {
+    //     createCountries(data[i])
+    // }
 }
 
 startCountries()
 
-countryInput.addEventListener('input', function () {
-    const value = this.value.trim(); // Usunięcie białych znaków z początku i końca
-    if (value.length > 0) {
-        this.value = value.charAt(0).toUpperCase() + value.slice(1); // Zamiana tylko pierwszej litery na wielką
-    }
-});
+// countryInput.addEventListener('input', function () {
+//     const value = this.value.trim(); // Usunięcie białych znaków z początku i końca
+//     if (value.length > 0) {
+//         this.value = value.charAt(0).toUpperCase() + value.slice(1); // Zamiana tylko pierwszej litery na wielką
+//     }
+// });
 
 countryInput.addEventListener('keydown', async function (event) {
 
@@ -65,19 +69,26 @@ countryInput.addEventListener('keydown', async function (event) {
     }
 });
 
+
+
+
 switchButton.addEventListener('click', function () {
 
-    app.classList.toggle('clicked')
-    headline.classList.toggle('clicked1')
-    filterSelector.classList.toggle('clicked1')
-    countryInput.classList.toggle('clicked1')
-    countryInput.classList.toggle('loupe-white')
-    backButton.classList.toggle('clicked1')
-    switchButton.classList.toggle('clicked1')
-    clickMain.classList.toggle('clicked')
+    document.body.classList.toggle("dark")
+
+    // app.classList.toggle('clicked')
+    // headline.classList.toggle('clicked1')
+    // filterSelector.classList.toggle('clicked1')
+    // countryInput.classList.toggle('clicked1')
+    // countryInput.classList.toggle('loupe-white')
+    // backButton.classList.toggle('clicked1')
+    // switchButton.classList.toggle('clicked1')
+    // clickMain.classList.toggle('clicked')
     // countryBox.classList.toggle('clicked1')
 
 })
+
+
 
 backButton.addEventListener('click', function () {
     app.classList.remove('hidden')

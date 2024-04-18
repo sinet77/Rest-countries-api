@@ -58,23 +58,22 @@
 }
 
 .main {
-    display: flex;
-    flex-wrap: wrap;
-    /* Zawijanie elementów do nowej linii */
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+    /*both row and column*/
 
 }
 
 .country-box {
     display: flex;
     flex-direction: column;
-    width: 20%;
     height: 500px;
     background-color: white;
     border-radius: 5px;
-    margin: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+
 
 
 }
@@ -185,4 +184,14 @@
 
 .hidden {
     display: none;
+}
+
+.dark .country-box {
+    background-color: black;
+    color: white;
+}
+
+.dark .app {
+    background-color: hsl(207, 26%, 17%);
+    color: white;
 }
