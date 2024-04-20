@@ -13,7 +13,7 @@
 .app {
     display: flex;
     flex-direction: column;
-    padding-left: 50px;
+    padding: 20px;
 
 }
 
@@ -36,7 +36,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 40px 50px 40px 0px;
+    /* padding: 40px 50px 40px 0px; */
     /* top ,right,bottom,left */
 }
 
@@ -46,6 +46,10 @@
     border-radius: 3px;
     border: none;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.country-bar::placeholder {
+    color: white;
 }
 
 .filter {
@@ -60,10 +64,27 @@
 .main {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 50px;
-    /*both row and column*/
+    gap: 30px;
+    margin-top: 50px;
 
 }
+
+@media (max-width:1400px) {
+    .main {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width:1000px) {
+    .main {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .country-box {
+        width: 300px;
+    }
+}
+
 
 .country-box {
     display: flex;
@@ -73,9 +94,6 @@
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-
-
-
 }
 
 .input-with-image {
@@ -112,10 +130,17 @@
 
 }
 
+#country-name {
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 45px;
+
+}
+
 .together {
     margin-top: 20px;
     line-height: 1.5;
-    font-weight: bold;
+
 }
 
 .switch {
@@ -159,27 +184,13 @@
 
 .second-column {
     flex: 25%;
-    line-height: 25px;
+    line-height: 35px;
 }
 
 .third-column {
     flex: 25%;
-    line-height: 25px;
+    line-height: 35px;
 
-}
-
-.clicked {
-    background-color: hsl(207, 26%, 17%);
-    color: white;
-}
-
-.clicked1 {
-    background-color: hsl(209, 23%, 22%);
-    color: white;
-}
-
-.clicked1::placeholder {
-    color: white;
 }
 
 .hidden {
@@ -187,11 +198,40 @@
 }
 
 .dark .country-box {
-    background-color: black;
+    background-color: hsl(209, 23%, 22%);
     color: white;
 }
 
 .dark .app {
     background-color: hsl(207, 26%, 17%);
+    color: white;
+}
+
+.dark .headline {
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+}
+
+.dark .filter {
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+}
+
+.dark .country-bar {
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+}
+
+.dark .background {
+    background-color: hsl(207, 26%, 17%);
+    color: white;
+}
+
+.dark .back-button {
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+}
+
+.dark .switch {
     color: white;
 }

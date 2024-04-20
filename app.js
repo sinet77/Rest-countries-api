@@ -3,7 +3,7 @@ const filterSelector = document.querySelector('.filter');
 const searchButton = document.getElementById('button'); // img lupki
 const countryInput = document.querySelector('.country-bar')
 const main = document.querySelector('.main')
-const countryName = document.querySelector('.country-name')
+const countryName = document.getElementById('country-name')
 const population = document.querySelector('.population')
 const region = document.querySelector('.region')
 const capital = document.querySelector('.capital')
@@ -15,11 +15,14 @@ const clickMain = document.querySelector('.click-main')
 const clickFlag = document.querySelector('.flag')
 
 
+//dodac jeszcze zakladki border !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+
+
 async function fetchCountriesData() {
     const response = await fetch(("data.json"));
     const data = await response.json();
 
-    // console.log(data)
     return data;
 }
 
@@ -51,12 +54,6 @@ async function startCountries() {
 
 startCountries()
 
-// countryInput.addEventListener('input', function () {
-//     const value = this.value.trim(); // Usunięcie białych znaków z początku i końca
-//     if (value.length > 0) {
-//         this.value = value.charAt(0).toUpperCase() + value.slice(1); // Zamiana tylko pierwszej litery na wielką
-//     }
-// });
 
 countryInput.addEventListener('keydown', async function (event) {
 
@@ -64,8 +61,6 @@ countryInput.addEventListener('keydown', async function (event) {
         main.innerHTML = ''
         const data = await fetchOneCountryData(countryInput.value);
         createCountries(data)
-
-
     }
 });
 
@@ -153,21 +148,52 @@ function createCountries(country) {
 function clickOnTheCountry(country) {
     main.classList.add('hidden')
     countryClick.classList.remove('hidden')
-    const nativeName = country.nativeName;
-    const currentNativeName = document.querySelector('.native-name')
-    currentNativeName.textContent = `Native Name: ${nativeName}`
-    // const currentPopulation = country.population;
-    // const currentRegion = country.region;
-    // const currentSubRegion = country.subregion
-    // const currentCapital = country.capital;
-    // const topLevelDomain = country.topLevelDomain;
-    // const currency = country.currencies;
-    // const languages = country.languages;
-    // const borders = country.borders;
-
 
     countryName.textContent = country.name;
     clickFlag.src = country.flags.png;
+
+    const currentNativeName = document.getElementById('singleNativeName')
+    currentNativeName.textContent = country.nativeName;
+
+    const currentPopulation = document.getElementById('singlePopulation')
+    currentPopulation.textContent = country.population;
+
+    const currentRegion = document.getElementById('singleRegion')
+    currentRegion.textContent = country.region;
+
+    const currentSubRegion = document.getElementById('singleSubRegion')
+    currentSubRegion.textContent = country.subregion
+
+    const currentCapital = document.getElementById('singleCapital')
+    currentCapital.textContent = country.capital;
+
+    const topLevelDomain = document.getElementById('singleDomain')
+    topLevelDomain.textContent = country.topLevelDomain;
+
+    const firstCurrency = document.getElementById('singleCurrencies')
+    const currencyTable = country.currencies;
+
+    currencyTable.forEach(currency => {
+        const currencyName = currency.name;
+        firstCurrency.textContent = currencyName;
+
+    });
+
+
+    const languages = document.getElementById('singleLanguages')
+    const languagesTable = country.languages;
+
+    languagesTable.forEach(language => {
+        const languageName = language.name;
+        languages.textContent = languageName;
+
+    })
+
+
+    const borders = country.borders;
+
+
+
 
 
 
@@ -183,12 +209,13 @@ filterSelector.addEventListener('change', async function (event) {
 
     const countriesData = await fetchCountriesData()
 
-
+    if (selectedOption === "Filter by Region") {
+        startCountries()
+    }
     const countriesInRegion = countriesData.filter(country => country.region === selectedOption);
     main.innerHTML = ''
     countriesInRegion.forEach(createCountries);
 
-    console.log(countriesInRegion);
+
 
 });
-
