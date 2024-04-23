@@ -40,6 +40,17 @@
     /* top ,right,bottom,left */
 }
 
+.house-title {
+    display: flex;
+    align-items: center;
+
+}
+
+.house {
+    margin-right: 50px;
+    cursor: pointer;
+}
+
 .country-bar {
     padding: 15px;
     width: 400px;
@@ -179,7 +190,7 @@
 }
 
 .first-column {
-    flex: 50%;
+    flex: 25%;
 }
 
 .second-column {
@@ -191,6 +202,20 @@
     flex: 25%;
     line-height: 35px;
 
+}
+
+#singleBorder {
+    display: flex;
+    padding: 12px 25px;
+    width: 110px;
+    word-spacing: 10px;
+    font-weight: bold;
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 5px;
+    color: hsl(200, 15%, 8%);
+    cursor: pointer;
 }
 
 .hidden {

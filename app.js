@@ -23,6 +23,7 @@ async function fetchCountriesData() {
     const response = await fetch(("data.json"));
     const data = await response.json();
 
+    console.log(data)
     return data;
 }
 
@@ -66,7 +67,6 @@ countryInput.addEventListener('keydown', async function (event) {
 
 
 
-
 switchButton.addEventListener('click', function () {
 
     document.body.classList.toggle("dark")
@@ -83,7 +83,16 @@ switchButton.addEventListener('click', function () {
 
 })
 
+const homeButton = document.querySelector('.house')
+homeButton.addEventListener('click', function () {
+    main.classList.remove('hidden')
+    countryClick.classList.add('hidden')
+    main.innerHTML = ''
+    let select = document.querySelector('select') //filter reset
+    select.selectedIndex = 0;
 
+    startCountries()
+})
 
 backButton.addEventListener('click', function () {
     app.classList.remove('hidden')
@@ -171,31 +180,42 @@ function clickOnTheCountry(country) {
     topLevelDomain.textContent = country.topLevelDomain;
 
     const firstCurrency = document.getElementById('singleCurrencies')
-    const currencyTable = country.currencies;
+    const currencyArray = country.currencies;
 
-    currencyTable.forEach(currency => {
+    currencyArray.forEach(currency => {
         const currencyName = currency.name;
         firstCurrency.textContent = currencyName;
 
     });
 
-
     const languages = document.getElementById('singleLanguages')
-    const languagesTable = country.languages;
+    const languagesArray = country.languages;
+    console.log(languagesArray)
 
-    languagesTable.forEach(language => {
+    languagesArray.forEach(language => {
         const languageName = language.name;
-        languages.textContent = languageName;
+        const draftLanguage = document.createElement('span')
+        draftLanguage.textContent = languageName;
+        console.log(draftLanguage)
+        languages.appendChild(draftLanguage)
 
     })
 
+    const borders = document.getElementById('singleBorders')
+    const bordersArray = country.borders;//["FRA", "ESP"]
+    console.log(bordersArray)
 
-    const borders = country.borders;
+    bordersArray.forEach(border => {
+        const draftBorder = document.createElement('span')
+        draftBorder.classList.add('singleBorder')
+        draftBorder.textContent = border;
+        console.log(draftBorder)
+        borders.appendChild(draftBorder)
+    })
 
-
-
-
-
+    // bordersArray.forEach(border=>{
+    //     const borderName = 
+    // })
 
 
 }
