@@ -49,6 +49,9 @@
 .house {
     margin-right: 50px;
     cursor: pointer;
+    width: 50px;
+    /* Zmniejszy szerokość obrazka do 50% oryginalnej */
+    height: auto;
 }
 
 .country-bar {
@@ -179,13 +182,18 @@
     flex-direction: column;
     padding: 20px 50px;
 
+
+
 }
 
 .click-main {
 
-    display: flex;
+
     align-items: center;
     margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
 
 }
 
@@ -206,8 +214,17 @@
 
 #singleBorder {
     display: flex;
+    margin-top: 50px;
+
+}
+
+
+.buttonBorder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 12px 25px;
-    width: 110px;
+    width: 130px;
     word-spacing: 10px;
     font-weight: bold;
     background-color: hsl(0, 0%, 100%);
@@ -216,7 +233,14 @@
     border-radius: 5px;
     color: hsl(200, 15%, 8%);
     cursor: pointer;
+    margin-top: 30px;
 }
+
+.border {
+    display: flex;
+
+}
+
 
 .hidden {
     display: none;

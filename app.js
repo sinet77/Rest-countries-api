@@ -58,11 +58,11 @@ startCountries()
 
 countryInput.addEventListener('keydown', async function (event) {
 
-    if (event.key === 'Enter') {
-        main.innerHTML = ''
-        const data = await fetchOneCountryData(countryInput.value);
-        createCountries(data)
-    }
+    const searchText = event.target.value.toLowerCase();
+    const data = await fetchCountriesData();
+    const filteredCountries = data.filter(country => country.name.toLowerCase().startsWith(searchText));
+    main.innerHTML = '';
+    filteredCountries.forEach(createCountries);
 });
 
 
@@ -154,7 +154,7 @@ function createCountries(country) {
 
 }
 
-function clickOnTheCountry(country) {
+async function clickOnTheCountry(country) {
     main.classList.add('hidden')
     countryClick.classList.remove('hidden')
 
@@ -201,23 +201,39 @@ function clickOnTheCountry(country) {
 
     })
 
-    const borders = document.getElementById('singleBorders')
+    const borders = document.getElementById('singleBorder')
     const bordersArray = country.borders;//["FRA", "ESP"]
-    console.log(bordersArray)
 
-    bordersArray.forEach(border => {
-        const draftBorder = document.createElement('span')
-        draftBorder.classList.add('singleBorder')
-        draftBorder.textContent = border;
-        console.log(draftBorder)
+    const countriesData = await fetchCountriesData()
+
+    const nameOfTheCountry = countriesData.filter(country => bordersArray.includes(country.alpha3Code))
+    const arrayCountryNames = nameOfTheCountry.map(country => country.name)
+
+    console.log(arrayCountryNames)
+    borders.innerHTML = '';
+
+    if (bordersArray) {
+        arrayCountryNames.forEach(border => {
+            const draftBorder = document.createElement('button')
+            draftBorder.classList.add('buttonBorder')
+            draftBorder.textContent = border;
+            console.log(draftBorder)
+            borders.appendChild(draftBorder)
+        })
+    } else {
+        const draftBorder = document.createElement('button')
+        draftBorder.classList.add('buttonBorder')
+        draftBorder.textContent = "None";
         borders.appendChild(draftBorder)
-    })
 
-    // bordersArray.forEach(border=>{
-    //     const borderName = 
-    // })
-
-
+    }
+    const borderButtons = document.querySelectorAll('.buttonBorder');
+    borderButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const borderCountryName = button.textContent;
+            createCountries(borderCountryName);
+        });
+    });
 }
 
 
