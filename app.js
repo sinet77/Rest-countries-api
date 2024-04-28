@@ -113,7 +113,18 @@ function createCountries(country) {
 
     const flag = document.createElement('img');
     flag.classList.add('flag')
-    flag.src = country.flags.png;
+
+    if (country.flags) {
+        if (country.flags.png && country.flags.svg) {
+            flag.src = country.flags.png;
+        } else if (country.flags.png) {
+            flag.src = country.flags.png;
+        } else if (country.flags.svg) {
+            flag.src = country.flags.svg;
+        }
+    }
+
+
     countryBox.appendChild(flag)
 
     const description = document.createElement('div')
@@ -159,7 +170,15 @@ async function clickOnTheCountry(country) {
     countryClick.classList.remove('hidden')
 
     countryName.textContent = country.name;
-    clickFlag.src = country.flags.png;
+    if (country.flags) {
+        if (country.flags.png && country.flags.svg) {
+            clickFlag.src = country.flags.png;
+        } else if (country.flags.png) {
+            clickFlag.src = country.flags.png;
+        } else if (country.flags.svg) {
+            clickFlag.src = country.flags.svg;
+        }
+    }
 
     const currentNativeName = document.getElementById('singleNativeName')
     currentNativeName.textContent = country.nativeName;
@@ -231,7 +250,8 @@ async function clickOnTheCountry(country) {
     borderButtons.forEach(button => {
         button.addEventListener('click', function () {
             const borderCountryName = button.textContent;
-            createCountries(borderCountryName);
+            console.log(borderCountryName)
+            clickOnTheCountry(borderCountryName);
         });
     });
 }

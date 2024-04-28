@@ -191,18 +191,22 @@
 
     align-items: center;
     margin-top: 50px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    display: flex;
+    justify-content: center;
 
 }
 
 .first-column {
-    flex: 25%;
+    margin-right: 60px;
+    flex: 1
+}
+
+.first-column .flag {
+    width: 100%;
 }
 
 .second-column {
-    flex: 25%;
+    flex: 1;
     line-height: 35px;
 }
 
@@ -214,7 +218,6 @@
 
 #singleBorder {
     display: flex;
-    margin-top: 50px;
 
 }
 
@@ -233,12 +236,11 @@
     border-radius: 5px;
     color: hsl(200, 15%, 8%);
     cursor: pointer;
-    margin-top: 30px;
 }
 
 .border {
     display: flex;
-
+    margin-top: 50px;
 }
 
 
@@ -283,4 +285,9 @@
 
 .dark .switch {
     color: white;
+}
+
+.country-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
