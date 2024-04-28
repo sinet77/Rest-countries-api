@@ -197,16 +197,11 @@
 }
 
 .first-column {
-    margin-right: 60px;
-    flex: 1
-}
-
-.first-column .flag {
-    width: 100%;
+    flex: 25%;
 }
 
 .second-column {
-    flex: 1;
+    flex: 25%;
     line-height: 35px;
 }
 
