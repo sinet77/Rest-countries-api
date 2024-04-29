@@ -169,7 +169,10 @@ async function clickOnTheCountry(country) {
     main.classList.add('hidden')
     countryClick.classList.remove('hidden')
 
+
     countryName.textContent = country.name;
+    // clickFlag.src = country.flags.png;
+
     if (country.flags) {
         if (country.flags.png && country.flags.svg) {
             clickFlag.src = country.flags.png;
@@ -207,29 +210,28 @@ async function clickOnTheCountry(country) {
 
     });
 
-    const languages = document.getElementById('singleLanguages')
-    const languagesArray = country.languages;
+    const languages = document.getElementById('singleLanguages');
+    const languagesArray = country.languages.map(language => language.name);
     console.log(languagesArray)
+    const languagesText = languagesArray.join(', ');
 
-    languagesArray.forEach(language => {
-        const languageName = language.name;
-        const draftLanguage = document.createElement('span')
-        draftLanguage.textContent = languageName;
-        console.log(draftLanguage)
-        languages.appendChild(draftLanguage)
+    languages.innerHTML = ''
 
-    })
+    const languagesElement = document.createElement('span');
+    languagesElement.textContent = languagesText;
+    languages.appendChild(languagesElement);
 
     const borders = document.getElementById('singleBorder')
     const bordersArray = country.borders;//["FRA", "ESP"]
 
     const countriesData = await fetchCountriesData()
 
-    const nameOfTheCountry = countriesData.filter(country => bordersArray.includes(country.alpha3Code))
+    const nameOfTheCountry = countriesData.filter(country => bordersArray.includes(country.alpha3Code.toString()))
     const arrayCountryNames = nameOfTheCountry.map(country => country.name)
 
     console.log(arrayCountryNames)
     borders.innerHTML = '';
+
 
     if (bordersArray) {
         arrayCountryNames.forEach(border => {
@@ -248,10 +250,11 @@ async function clickOnTheCountry(country) {
     }
     const borderButtons = document.querySelectorAll('.buttonBorder');
     borderButtons.forEach(button => {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', async function () {
             const borderCountryName = button.textContent;
-            console.log(borderCountryName)
-            clickOnTheCountry(borderCountryName);
+            const borderCountryData = await fetchOneCountryData(borderCountryName);
+
+            clickOnTheCountry(borderCountryData);
         });
     });
 }
