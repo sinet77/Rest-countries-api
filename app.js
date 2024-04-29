@@ -23,7 +23,7 @@ async function fetchCountriesData() {
     const response = await fetch(("data.json"));
     const data = await response.json();
 
-    console.log(data)
+
     return data;
 }
 
@@ -56,13 +56,16 @@ async function startCountries() {
 startCountries()
 
 
-countryInput.addEventListener('keydown', async function (event) {
+countryInput.addEventListener('input', async function (event) {
 
     const searchText = event.target.value.toLowerCase();
+    console.log("searchText", searchText)
     const data = await fetchCountriesData();
     const filteredCountries = data.filter(country => country.name.toLowerCase().startsWith(searchText));
+    console.log("filteredCountries", filteredCountries)
     main.innerHTML = '';
     filteredCountries.forEach(createCountries);
+
 });
 
 
@@ -114,15 +117,17 @@ function createCountries(country) {
     const flag = document.createElement('img');
     flag.classList.add('flag')
 
-    if (country.flags) {
-        if (country.flags.png && country.flags.svg) {
-            flag.src = country.flags.png;
-        } else if (country.flags.png) {
-            flag.src = country.flags.png;
-        } else if (country.flags.svg) {
-            flag.src = country.flags.svg;
-        }
-    }
+    flag.src = country.flags.png || country.flags.svg;
+
+    // if (country.flags) {
+    //     if (country.flags.png && country.flags.svg) {
+    //         flag.src = country.flags.png;
+    //     } else if (country.flags.png) {
+    //         flag.src = country.flags.png;
+    //     } else if (country.flags.svg) {
+    //         flag.src = country.flags.svg;
+    //     }
+    // }
 
 
     countryBox.appendChild(flag)
@@ -171,17 +176,18 @@ async function clickOnTheCountry(country) {
 
 
     countryName.textContent = country.name;
-    // clickFlag.src = country.flags.png;
 
-    if (country.flags) {
-        if (country.flags.png && country.flags.svg) {
-            clickFlag.src = country.flags.png;
-        } else if (country.flags.png) {
-            clickFlag.src = country.flags.png;
-        } else if (country.flags.svg) {
-            clickFlag.src = country.flags.svg;
-        }
-    }
+    flag.src = country.flags.png || country.flags.svg;
+
+    // if (country.flags) {
+    //     if (country.flags.png && country.flags.svg) {
+    //         clickFlag.src = country.flags.png;
+    //     } else if (country.flags.png) {
+    //         clickFlag.src = country.flags.png;
+    //     } else if (country.flags.svg) {
+    //         clickFlag.src = country.flags.svg;
+    //     }
+    // }
 
     const currentNativeName = document.getElementById('singleNativeName')
     currentNativeName.textContent = country.nativeName;
