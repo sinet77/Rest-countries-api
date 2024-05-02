@@ -12,7 +12,7 @@ const headline = document.querySelector('.headline')
 const backButton = document.querySelector('.back-button')
 const countryClick = document.querySelector('.country-click')
 const clickMain = document.querySelector('.click-main')
-const clickFlag = document.querySelector('.flag')
+const clickFlag = document.querySelector('.flagInside')
 
 
 //dodac jeszcze zakladki border !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
@@ -177,7 +177,8 @@ async function clickOnTheCountry(country) {
 
     countryName.textContent = country.name;
 
-    flag.src = country.flags.png || country.flags.svg;
+    clickFlag.src = country.flags.png || country.flags.svg;
+    clickFlag.classList.add('flagInside')
 
     // if (country.flags) {
     //     if (country.flags.png && country.flags.svg) {
