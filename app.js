@@ -15,9 +15,6 @@ const clickMain = document.querySelector('.click-main')
 const clickFlag = document.querySelector('.flagInside')
 
 
-//dodac jeszcze zakladki border !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-
-
 
 async function fetchCountriesData() {
     const response = await fetch(("data.json"));
@@ -48,9 +45,7 @@ async function startCountries() {
     data.forEach(d => {
         createCountries(d)
     })
-    // for (let i = 0; i < data.length; i++) {
-    //     createCountries(data[i])
-    // }
+
 }
 
 startCountries()
@@ -179,16 +174,6 @@ async function clickOnTheCountry(country) {
 
     clickFlag.src = country.flags.png || country.flags.svg;
     clickFlag.classList.add('flagInside')
-
-    // if (country.flags) {
-    //     if (country.flags.png && country.flags.svg) {
-    //         clickFlag.src = country.flags.png;
-    //     } else if (country.flags.png) {
-    //         clickFlag.src = country.flags.png;
-    //     } else if (country.flags.svg) {
-    //         clickFlag.src = country.flags.svg;
-    //     }
-    // }
 
     const currentNativeName = document.getElementById('singleNativeName')
     currentNativeName.textContent = country.nativeName;

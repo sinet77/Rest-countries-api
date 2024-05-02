@@ -296,6 +296,11 @@
     color: white;
 }
 
+.dark .buttonBorder {
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+}
+
 .country-info {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
